@@ -13,6 +13,7 @@ function App() {
     <div className="App">
       <Elements stripe={publishableKey}>
         <ApplePay />
+        <apple-pay-button buttonstyle="black" type="plain" locale="en"></apple-pay-button>
       </Elements>
     </div>
   );

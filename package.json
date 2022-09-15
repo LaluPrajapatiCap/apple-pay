@@ -1,0 +1,25 @@
+{
+  "name": "apple-pay-stripe",
+  "version": "1.0.0",
+  "description": "integration of apple pay with stripe payment gateway",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "apple-pay-stripe"
+  ],
+  "author": "lp",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "stripe": "^10.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}

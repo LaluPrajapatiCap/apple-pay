@@ -62,7 +62,7 @@ const ApplePay = () => {
   return (
     <div>
       <h1>Apple Pay</h1>
-      <PaymentRequestButtonElement options={{paymentRequest}} />
+      {paymentRequest && <PaymentRequestButtonElement options={{paymentRequest}} />}
     </div>
   );
 };

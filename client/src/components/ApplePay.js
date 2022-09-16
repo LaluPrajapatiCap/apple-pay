@@ -29,6 +29,35 @@ const ApplePay = () => {
         setPaymentRequest(pr);
       }
     });
+    pr.on('paymentmethod', async(e) => {
+      // create a payment intent on the server
+      const { clientSecret } = await fetch('/create-payment-intent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          paymentMethodType: 'card',
+          currency:'usd',          
+        })
+      }).then(res => res.json());
+
+      // confirm payment intent on the client
+      const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: e.paymentMethod.id
+      },
+       {
+        handleActions: false // to disbale any other security layer like 3D
+       }
+      )
+      if(error){
+        e.complete('fail');
+      }
+      e.complete('success');
+      if(paymentIntent.status === 'requires_action'){
+        stripe.confirmCardPayment(clientSecret);
+      }
+    })
   }, [stripe, elements]);
   return (
     <div>
